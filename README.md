@@ -14,4 +14,5 @@ This library uses the MIT license. In short this means:
 - You MAY use this product privately
 - You MUST include a copy of the license and copyright notice in your code
 - The creator of this product CANNOT be held liable for any damage caused by this product (it comes with no warranty)
+
 Please note this summary does NOT replace the license and may not be up-to-date. Please refer to the license file for the complete license.
