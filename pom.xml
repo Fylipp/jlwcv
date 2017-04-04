@@ -6,7 +6,7 @@
 
     <groupId>com.pploder</groupId>
     <artifactId>jlwic</artifactId>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
 
     <name>Java Lightweight Immutable Colections</name>
     <description>Lightweight immutable wrappers for Java's Collection and Map interfaces</description>

@@ -1,4 +1,4 @@
-package com.fylipp.jlwic;
+package com.pploder.jlwic;
 
 public class ImmutableException extends RuntimeException {
 

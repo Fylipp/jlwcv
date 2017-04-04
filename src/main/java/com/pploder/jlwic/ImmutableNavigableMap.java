@@ -1,4 +1,4 @@
-package com.fylipp.jlwic;
+package com.pploder.jlwic;
 
 import java.util.Comparator;
 import java.util.Map;
