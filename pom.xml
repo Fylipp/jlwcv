@@ -5,12 +5,12 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.pploder</groupId>
-    <artifactId>jlwic</artifactId>
-    <version>1.0.2</version>
+    <artifactId>jlwcv</artifactId>
+    <version>2.0.0</version>
 
-    <name>Java Lightweight Immutable Colections</name>
-    <description>Lightweight immutable wrappers for Java's Collection and Map interfaces</description>
-    <url>https://github.com/Fylipp/jlwic</url>
+    <name>Java Lightweight Collection Views</name>
+    <description>Lightweight view wrappers for Java's Collection and Map interfaces</description>
+    <url>https://github.com/Fylipp/jlwcv</url>
     <packaging>jar</packaging>
 
     <licenses>
