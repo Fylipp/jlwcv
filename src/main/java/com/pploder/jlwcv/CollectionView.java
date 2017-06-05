@@ -1,29 +1,29 @@
-package com.pploder.jlwic;
+package com.pploder.jlwcv;
 
 import java.util.Collection;
 
-public class ImmutableCollection<T> extends ImmutableIterable<T> implements Collection<T> {
+public class CollectionView<T> extends IterableView<T> implements Collection<T> {
 
 	private final Collection<T> original;
 
-	public ImmutableCollection(Collection<T> original) {
+	public CollectionView(Collection<T> original) {
 		super(original);
 		this.original = original;
 	}
 
 	@Override
 	public boolean add(T e) {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 	@Override
 	public boolean addAll(Collection<? extends T> c) {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 	@Override
 	public void clear() {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 	@Override
@@ -43,17 +43,17 @@ public class ImmutableCollection<T> extends ImmutableIterable<T> implements Coll
 
 	@Override
 	public boolean remove(Object o) {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 	@Override
 	public boolean removeAll(Collection<?> c) {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 	@Override
 	public boolean retainAll(Collection<?> c) {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 	@Override

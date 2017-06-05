@@ -1,12 +1,12 @@
-package com.pploder.jlwic;
+package com.pploder.jlwcv;
 
 import java.util.Queue;
 
-public class ImmutableQueue<T> extends ImmutableCollection<T> implements Queue<T> {
+public class QueueView<T> extends CollectionView<T> implements Queue<T> {
 
 	private final Queue<T> original;
 
-	public ImmutableQueue(Queue<T> original) {
+	public QueueView(Queue<T> original) {
 		super(original);
 		this.original = original;
 	}
@@ -18,7 +18,7 @@ public class ImmutableQueue<T> extends ImmutableCollection<T> implements Queue<T
 
 	@Override
 	public boolean offer(T arg0) {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 	@Override
@@ -28,12 +28,12 @@ public class ImmutableQueue<T> extends ImmutableCollection<T> implements Queue<T
 
 	@Override
 	public T poll() {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 	@Override
 	public T remove() {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 }

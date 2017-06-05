@@ -1,13 +1,13 @@
-package com.pploder.jlwic;
+package com.pploder.jlwcv;
 
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.TransferQueue;
 
-public class ImmutableTransferQueue<T> extends ImmutableBlockingQueue<T> implements TransferQueue<T> {
+public class TransferQueueView<T> extends BlockingQueueView<T> implements TransferQueue<T> {
 
 	private final TransferQueue<T> original;
 
-	public ImmutableTransferQueue(TransferQueue<T> original) {
+	public TransferQueueView(TransferQueue<T> original) {
 		super(original);
 		this.original = original;
 	}
@@ -24,17 +24,17 @@ public class ImmutableTransferQueue<T> extends ImmutableBlockingQueue<T> impleme
 
 	@Override
 	public void transfer(T e) throws InterruptedException {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 	@Override
 	public boolean tryTransfer(T e) {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 	@Override
 	public boolean tryTransfer(T e, long timeout, TimeUnit unit) throws InterruptedException {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 }

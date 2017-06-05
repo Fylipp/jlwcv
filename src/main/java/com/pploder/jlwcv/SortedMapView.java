@@ -1,13 +1,13 @@
-package com.pploder.jlwic;
+package com.pploder.jlwcv;
 
 import java.util.Comparator;
 import java.util.SortedMap;
 
-public class ImmutableSortedMap<K, V> extends ImmutableMap<K, V> implements SortedMap<K, V> {
+public class SortedMapView<K, V> extends MapView<K, V> implements SortedMap<K, V> {
 
 	private final SortedMap<K, V> original;
 
-	public ImmutableSortedMap(SortedMap<K, V> original) {
+	public SortedMapView(SortedMap<K, V> original) {
 		super(original);
 		this.original = original;
 	}
@@ -24,7 +24,7 @@ public class ImmutableSortedMap<K, V> extends ImmutableMap<K, V> implements Sort
 
 	@Override
 	public SortedMap<K, V> headMap(K toKey) {
-		return new ImmutableSortedMap<K, V>(original.headMap(toKey));
+		return new SortedMapView<K, V>(original.headMap(toKey));
 	}
 
 	@Override
@@ -34,12 +34,12 @@ public class ImmutableSortedMap<K, V> extends ImmutableMap<K, V> implements Sort
 
 	@Override
 	public SortedMap<K, V> subMap(K fromKey, K toKey) {
-		return new ImmutableSortedMap<K, V>(original.subMap(fromKey, toKey));
+		return new SortedMapView<K, V>(original.subMap(fromKey, toKey));
 	}
 
 	@Override
 	public SortedMap<K, V> tailMap(K fromKey) {
-		return new ImmutableSortedMap<K, V>(original.tailMap(fromKey));
+		return new SortedMapView<K, V>(original.tailMap(fromKey));
 	}
 
 }

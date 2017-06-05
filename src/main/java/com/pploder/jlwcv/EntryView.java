@@ -1,12 +1,12 @@
-package com.pploder.jlwic;
+package com.pploder.jlwcv;
 
 import java.util.Map.Entry;
 
-public class ImmutableEntry<K, V> implements Entry<K, V> {
+public class EntryView<K, V> implements Entry<K, V> {
 
 	private final Entry<K, V> original;
 
-	public ImmutableEntry(Entry<K, V> original) {
+	public EntryView(Entry<K, V> original) {
 		this.original = original;
 	}
 
@@ -22,7 +22,7 @@ public class ImmutableEntry<K, V> implements Entry<K, V> {
 
 	@Override
 	public V setValue(V arg0) {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 }

@@ -1,13 +1,13 @@
-package com.pploder.jlwic;
+package com.pploder.jlwcv;
 
 import java.util.Iterator;
 import java.util.NavigableSet;
 
-public class ImmutableNavigableSet<T> extends ImmutableSortedSet<T> implements NavigableSet<T> {
+public class NavigableSetView<T> extends SortedSetView<T> implements NavigableSet<T> {
 
 	private final NavigableSet<T> original;
 
-	public ImmutableNavigableSet(NavigableSet<T> original) {
+	public NavigableSetView(NavigableSet<T> original) {
 		super(original);
 		this.original = original;
 	}
@@ -59,12 +59,12 @@ public class ImmutableNavigableSet<T> extends ImmutableSortedSet<T> implements N
 
 	@Override
 	public NavigableSet<T> subSet(T fromElement, boolean fromInclusive, T toElement, boolean toInclusive) {
-		return new ImmutableNavigableSet<T>(original.subSet(fromElement, fromInclusive, toElement, toInclusive));
+		return new NavigableSetView<T>(original.subSet(fromElement, fromInclusive, toElement, toInclusive));
 	}
 
 	@Override
 	public NavigableSet<T> tailSet(T fromElement, boolean inclusive) {
-		return new ImmutableNavigableSet<T>(original.tailSet(fromElement, inclusive));
+		return new NavigableSetView<T>(original.tailSet(fromElement, inclusive));
 	}
 
 }

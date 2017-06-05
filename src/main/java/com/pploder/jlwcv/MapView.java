@@ -1,15 +1,15 @@
-package com.pploder.jlwic;
+package com.pploder.jlwcv;
 
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
 
-public class ImmutableMap<K, V> implements Map<K, V> {
+public class MapView<K, V> implements Map<K, V> {
 
 	private final Map<K, V> original;
 
-	public ImmutableMap(Map<K, V> original) {
+	public MapView(Map<K, V> original) {
 		this.original = original;
 	}
 
@@ -34,10 +34,10 @@ public class ImmutableMap<K, V> implements Map<K, V> {
 		Set<Map.Entry<K, V>> neo = new HashSet<>();
 
 		for (Entry<K, V> entry : old) {
-			neo.add(new ImmutableEntry<K, V>(entry));
+			neo.add(new EntryView<K, V>(entry));
 		}
 
-		return new ImmutableSet<>(neo);
+		return new SetView<>(neo);
 	}
 
 	@Override
@@ -57,17 +57,17 @@ public class ImmutableMap<K, V> implements Map<K, V> {
 
 	@Override
 	public V put(K key, V value) {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 	@Override
 	public void putAll(Map<? extends K, ? extends V> m) {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 	@Override
 	public V remove(Object key) {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 	@Override

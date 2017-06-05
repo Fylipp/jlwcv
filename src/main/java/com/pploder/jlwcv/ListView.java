@@ -1,26 +1,26 @@
-package com.pploder.jlwic;
+package com.pploder.jlwcv;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.ListIterator;
 
-public class ImmutableList<T> extends ImmutableCollection<T> implements List<T> {
+public class ListView<T> extends CollectionView<T> implements List<T> {
 
 	private final List<T> original;
 
-	public ImmutableList(List<T> original) {
+	public ListView(List<T> original) {
 		super(original);
 		this.original = original;
 	}
 
 	@Override
 	public void add(int index, T element) {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 	@Override
 	public boolean addAll(int index, Collection<? extends T> c) {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 	@Override
@@ -40,27 +40,27 @@ public class ImmutableList<T> extends ImmutableCollection<T> implements List<T> 
 
 	@Override
 	public ListIterator<T> listIterator() {
-		return new ImmutableListIterator<T>(original.listIterator());
+		return new ListIteratorView<T>(original.listIterator());
 	}
 
 	@Override
 	public ListIterator<T> listIterator(int index) {
-		return new ImmutableListIterator<T>(original.listIterator(index));
+		return new ListIteratorView<T>(original.listIterator(index));
 	}
 
 	@Override
 	public T remove(int index) {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 	@Override
 	public T set(int index, T element) {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 	@Override
 	public List<T> subList(int fromIndex, int toIndex) {
-		return new ImmutableList<>(original.subList(fromIndex, toIndex));
+		return new ListView<>(original.subList(fromIndex, toIndex));
 	}
 
 }

@@ -1,41 +1,41 @@
-package com.pploder.jlwic;
+package com.pploder.jlwcv;
 
 import java.util.Collection;
 import java.util.concurrent.BlockingQueue;
 import java.util.concurrent.TimeUnit;
 
-public class ImmutableBlockingQueue<T> extends ImmutableQueue<T> implements BlockingQueue<T> {
+public class BlockingQueueView<T> extends QueueView<T> implements BlockingQueue<T> {
 
 	private final BlockingQueue<T> original;
 
-	public ImmutableBlockingQueue(BlockingQueue<T> original) {
+	public BlockingQueueView(BlockingQueue<T> original) {
 		super(original);
 		this.original = original;
 	}
 
 	@Override
 	public int drainTo(Collection<? super T> c) {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 	@Override
 	public int drainTo(Collection<? super T> c, int i) {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 	@Override
 	public boolean offer(T t, long l, TimeUnit tu) throws InterruptedException {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 	@Override
 	public T poll(long l, TimeUnit tu) throws InterruptedException {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 	@Override
 	public void put(T t) throws InterruptedException {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class ImmutableBlockingQueue<T> extends ImmutableQueue<T> implements Bloc
 
 	@Override
 	public T take() throws InterruptedException {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 }

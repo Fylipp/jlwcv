@@ -1,4 +1,4 @@
-package com.pploder.jlwic;
+package com.pploder.jlwcv;
 
 import java.util.Comparator;
 import java.util.Map;
@@ -6,11 +6,11 @@ import java.util.NavigableMap;
 import java.util.NavigableSet;
 import java.util.SortedMap;
 
-public class ImmutableNavigableMap<K, V> extends ImmutableMap<K, V> implements NavigableMap<K, V> {
+public class NavigableMapView<K, V> extends MapView<K, V> implements NavigableMap<K, V> {
 
 	private final NavigableMap<K, V> original;
 
-	public ImmutableNavigableMap(NavigableMap<K, V> original) {
+	public NavigableMapView(NavigableMap<K, V> original) {
 		super(original);
 		this.original = original;
 	}
@@ -32,7 +32,7 @@ public class ImmutableNavigableMap<K, V> extends ImmutableMap<K, V> implements N
 
 	@Override
 	public Map.Entry<K, V> ceilingEntry(K key) {
-		return new ImmutableEntry<K, V>(original.ceilingEntry(key));
+		return new EntryView<K, V>(original.ceilingEntry(key));
 	}
 
 	@Override
@@ -42,22 +42,22 @@ public class ImmutableNavigableMap<K, V> extends ImmutableMap<K, V> implements N
 
 	@Override
 	public NavigableSet<K> descendingKeySet() {
-		return new ImmutableNavigableSet<>(original.descendingKeySet());
+		return new NavigableSetView<>(original.descendingKeySet());
 	}
 
 	@Override
 	public NavigableMap<K, V> descendingMap() {
-		return new ImmutableNavigableMap<>(original.descendingMap());
+		return new NavigableMapView<>(original.descendingMap());
 	}
 
 	@Override
 	public Map.Entry<K, V> firstEntry() {
-		return new ImmutableEntry<K, V>(original.firstEntry());
+		return new EntryView<K, V>(original.firstEntry());
 	}
 
 	@Override
 	public Map.Entry<K, V> floorEntry(K key) {
-		return new ImmutableEntry<K, V>(original.floorEntry(key));
+		return new EntryView<K, V>(original.floorEntry(key));
 	}
 
 	@Override
@@ -67,17 +67,17 @@ public class ImmutableNavigableMap<K, V> extends ImmutableMap<K, V> implements N
 
 	@Override
 	public SortedMap<K, V> headMap(K toKey) {
-		return new ImmutableSortedMap<>(original).headMap(toKey);
+		return new SortedMapView<>(original).headMap(toKey);
 	}
 
 	@Override
 	public NavigableMap<K, V> headMap(K toKey, boolean inclusive) {
-		return new ImmutableNavigableMap<>(original.headMap(toKey, inclusive));
+		return new NavigableMapView<>(original.headMap(toKey, inclusive));
 	}
 
 	@Override
 	public Map.Entry<K, V> higherEntry(K key) {
-		return new ImmutableEntry<K, V>(original.higherEntry(key));
+		return new EntryView<K, V>(original.higherEntry(key));
 	}
 
 	@Override
@@ -87,12 +87,12 @@ public class ImmutableNavigableMap<K, V> extends ImmutableMap<K, V> implements N
 
 	@Override
 	public Map.Entry<K, V> lastEntry() {
-		return new ImmutableEntry<K, V>(original.lastEntry());
+		return new EntryView<K, V>(original.lastEntry());
 	}
 
 	@Override
 	public Map.Entry<K, V> lowerEntry(K key) {
-		return new ImmutableEntry<K, V>(original.lowerEntry(key));
+		return new EntryView<K, V>(original.lowerEntry(key));
 	}
 
 	@Override
@@ -102,37 +102,37 @@ public class ImmutableNavigableMap<K, V> extends ImmutableMap<K, V> implements N
 
 	@Override
 	public NavigableSet<K> navigableKeySet() {
-		return new ImmutableNavigableSet<>(original.navigableKeySet());
+		return new NavigableSetView<>(original.navigableKeySet());
 	}
 
 	@Override
 	public Map.Entry<K, V> pollFirstEntry() {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 	@Override
 	public Map.Entry<K, V> pollLastEntry() {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 	@Override
 	public SortedMap<K, V> subMap(K fromKey, K toKey) {
-		return new ImmutableSortedMap<>(original.subMap(fromKey, toKey));
+		return new SortedMapView<>(original.subMap(fromKey, toKey));
 	}
 
 	@Override
 	public NavigableMap<K, V> subMap(K fromKey, boolean fromInclusive, K toKey, boolean toInclusive) {
-		return new ImmutableNavigableMap<>(original.subMap(fromKey, fromInclusive, toKey, toInclusive));
+		return new NavigableMapView<>(original.subMap(fromKey, fromInclusive, toKey, toInclusive));
 	}
 
 	@Override
 	public SortedMap<K, V> tailMap(K fromKey) {
-		return new ImmutableSortedMap<>(original.tailMap(fromKey));
+		return new SortedMapView<>(original.tailMap(fromKey));
 	}
 
 	@Override
 	public NavigableMap<K, V> tailMap(K fromKey, boolean inclusive) {
-		return new ImmutableNavigableMap<>(original.tailMap(fromKey, inclusive));
+		return new NavigableMapView<>(original.tailMap(fromKey, inclusive));
 	}
 
 }

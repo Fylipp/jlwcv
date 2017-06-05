@@ -1,12 +1,12 @@
-package com.pploder.jlwic;
+package com.pploder.jlwcv;
 
 import java.util.Iterator;
 
-public class ImmutableIterator<T> implements Iterator<T> {
+public class IteratorView<T> implements Iterator<T> {
 
 	private final Iterator<T> original;
 	
-	public ImmutableIterator(Iterator<T> original) {
+	public IteratorView(Iterator<T> original) {
 		this.original = original;
 	}
 	
@@ -22,7 +22,7 @@ public class ImmutableIterator<T> implements Iterator<T> {
 	
 	@Override
 	public void remove() {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 }

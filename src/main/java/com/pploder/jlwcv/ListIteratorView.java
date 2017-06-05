@@ -1,18 +1,18 @@
-package com.pploder.jlwic;
+package com.pploder.jlwcv;
 
 import java.util.ListIterator;
 
-public class ImmutableListIterator<T> implements ListIterator<T> {
+public class ListIteratorView<T> implements ListIterator<T> {
 
 	private final ListIterator<T> original;
 
-	public ImmutableListIterator(ListIterator<T> original) {
+	public ListIteratorView(ListIterator<T> original) {
 		this.original = original;
 	}
 
 	@Override
 	public void add(T e) {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 	@Override
@@ -47,12 +47,12 @@ public class ImmutableListIterator<T> implements ListIterator<T> {
 
 	@Override
 	public void remove() {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 	@Override
 	public void set(T e) {
-		throw new ImmutableException();
+		throw new ViewMutationAttemptException();
 	}
 
 }
